@@ -84,7 +84,7 @@ app.get("/notes", function (req, res) {
 });
 
 //Default home//
-app.get("*", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "Develop/public/index.html"));
 });
 
@@ -92,6 +92,10 @@ app.get("/api/notes", function (req, res) {
   return res.sendFile(path.json(__dirname, "Develop/db/db.json"));
 });
 
-app.listen(PORT, function () {
-  console.log("Server is listening on: " + PORT);
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT " + PORT);
+  app.get("/", function(req, res) {
+    res.json(path.join(__dirname, "public/index.html"));
+  });
 });
